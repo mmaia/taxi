@@ -1,0 +1,324 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="http://richfaces.org/a4j" 
+	template="/layout/template.xhtml">
+
+	<ui:define name="head">
+		<a:loadStyle src="/stylesheet/solicitacaoMap.css"/>
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false"></script>
+		<!-- <script type="text/javascript" src="http://code.google.com/apis/gears/gears_init.js"></script>  -->
+		<script type="text/javascript" src="#{request.contextPath}/js/geo.js"></script>
+		<script type="text/javascript" src="#{request.contextPath}/js/solicitacaoMap.js"></script>
+		<script type="text/javascript" src="#{request.contextPath}/js/uteis.js"></script>
+		<script type="text/javascript">
+			//<![CDATA[
+			function limparCampos()
+			{
+				idSolicitacao = 0;
+				//document.solicitarTaxiForm.reset();
+				timerAtualizacaoPosTaxista();
+			}
+			
+			//function chamada no onclick do link cancelar
+			//cancela solicitacao 
+			function cancelaSolicitacao(){
+			    var retorno  = confirm('Deseja cancelar seu pedido?');
+			   
+				if(retorno){
+					if(idSolicitacao == 0)
+					{	
+						Seam.Remoting.getContext().setConversationId(#{conversation.id});
+				    	Seam.Component.getInstance("solicitacaoWebRemote").recuperaIdUltimaSolicitacaoUsuario(#{usuario.id}, idSolicitacaoCallBack);
+					}
+		
+				    if(idSolicitacao > 0)
+					{
+				    	Seam.Component.getInstance("solicitacaoWebRemote").cancelaPedidoEmAndamento(idSolicitacao, posCancelaSolicitacaoCallBack);
+					}
+				}
+			}
+			
+			//function chamada com retorno do metodo java
+			function posCancelaSolicitacaoCallBack(retorno){
+			    if( retorno ){
+					window.location="solicitarTaxi.seam?c=cancelado";
+					
+				}else{
+					alert("Falhou, tente mais tarde!");
+				}
+			}
+			
+			//verifica se na URL tem a informacao que a
+			//solicitacao foi cancelada, se foi mostra mensagem 
+			//de cancelamento
+
+			//if(QueryString("c")== "cancelado"){
+			//	document.getElementById("divMsgCancela").style.display="block";
+			//}
+			// ]]>
+		</script>
+		
+		<!-- Scripts para o Seam Remote -->
+		<script type="text/javascript" src="#{request.contextPath}/seam/resource/remoting/resource/remote.js"></script>
+		<script type="text/javascript" src="#{request.contextPath}/seam/resource/remoting/interface.js?solicitacaoWebRemote"></script>
+		
+	
+		<script type="text/javascript">
+		//<![CDATA[
+				  function timerAtualizacaoPosTaxista()
+				  {
+					atualizaPosTaxista();
+					var t = setTimeout("timerAtualizacaoPosTaxista()", 30000);  
+				  }
+			  
+				  function atualizaPosTaxista() {
+					if(idSolicitacao == 0)
+					{	
+						Seam.Remoting.getContext().setConversationId(#{conversation.id});
+				    	Seam.Component.getInstance("solicitacaoWebRemote").recuperaIdUltimaSolicitacaoUsuario(#{usuario.id}, idSolicitacaoCallBack);
+					}
+				    if(idSolicitacao > 0)
+					{
+				    	Seam.Component.getInstance("solicitacaoWebRemote").recuperaPosicaoTaxista(idSolicitacao, posTaxistaCallback);
+					}
+				}
+				
+			    function posTaxistaCalback(result) {    
+				    if((result.getLatitude() != 0) && (result.getLongitude() != 0))
+					{
+						desenhaTaxi(result.getLatitude(), result.getLongitude());
+						refreshStatus();
+					}
+				}
+
+				function idSolicitacaoCallBack(result)
+				{
+					idSolicitacao = result;
+				}			  	
+			// ]]>
+		  </script>
+	</ui:define>
+	<ui:define name="body">
+		<h1>
+			<h:outputText value="Solicitar Taxi" style="color: #000000; font-family: Verdana; font-size:15px;"/>
+		</h1>
+		<div id="divMsgCancela" style="display:none;" class="mensagem sucesso"><h:outputText value="#{messages['solicitacao.cancelada.pelo.usuario']}" /></div>
+		<rich:panel>
+			<table width="100%">
+			    <tr><td><h:outputText rendered="#{facesContext.externalContext.requestParameterMap.get('c')}" value="Seu pedido foi cancelado!" /></td></tr>
+				<tr>
+					<!-- coluna da esquerda -->
+					<td valign="top" width="50%">
+						<h:panelGrid id="regiaoFormularioRota">
+						<s:div id="solicitacaoFormDiv" rendered="#{solicitacaoWebRemote.statusSolicitacao == 'LIVRE'}" >
+							<h:form id="solicitarTaxiForm" styleClass="edit">
+								<table style="border: 1px solid black;">
+									<tr>
+										<td>
+									        	<s:decorate id="origemField" template="/layout/edit.xhtml">
+												<ui:define name="label">Origem</ui:define>
+												<h:inputText id="origem" required="true" size="60" maxlength="100"
+													value="#{solicitacaoHome.instance.origem}" immediate="true" requiredMessage="Obrigatório"
+													onkeyup="javascript:habilitaBotaoSolicitacao();limpaMsgCancelar();">
+												</h:inputText>
+												<rich:message for="origem" style="color:red;"/>
+											</s:decorate>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<s:decorate id="destinoField" template="/layout/edit.xhtml">
+												<ui:define name="label">Destino</ui:define>
+												<h:inputText id="destino" required="false" size="60" immediate="true" requiredMessage="Obrigatório"
+													maxlength="100" value="#{solicitacaoHome.instance.destino}"
+													onkeyup="javascript:habilitaBotaoSolicitacao()">
+												</h:inputText>
+											</s:decorate>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<s:decorate id="numeroPassageirosField"
+												template="/layout/edit.xhtml">
+												<ui:define name="label">Número de Passageiros</ui:define>
+													<h:selectOneMenu id="numeroPassageiros" value="#{solicitacaoHome.instance.numeroPassageiros}" required="true" 
+														requiredMessage="Obrigatório">
+														<f:selectItem itemLabel="1 Passageiro" itemValue="1"></f:selectItem>
+														<f:selectItem itemLabel="2 Passageiros" itemValue="2"></f:selectItem>
+														<f:selectItem itemLabel="3 Passageiros" itemValue="3"></f:selectItem>
+														<f:selectItem itemLabel="4 Passageiros" itemValue="4"></f:selectItem>
+														<f:selectItem itemLabel="5 Passageiros" itemValue="5"></f:selectItem>
+													</h:selectOneMenu>
+											</s:decorate>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<s:decorate id="dataHoraField" template="/layout/edit.xhtml">
+												<ui:define name="label">Data / Hora </ui:define>
+												<rich:calendar id="dataHora" required="true"
+													value="#{solicitacaoHome.instance.dataHora}"
+													datePattern="dd/MM/yyyy HH:mm" />
+											</s:decorate>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<s:decorate id="informacoesAdicionaisField"
+												template="/layout/edit.xhtml">
+												<ui:define name="label">Informacoes Adicionais</ui:define>
+												<h:inputTextarea id="informacoesAdicionais" required="false" cols="34"
+													value="#{solicitacaoHome.instance.informacoesAdicionais}">
+												</h:inputTextarea>
+											</s:decorate>
+										</td>
+									</tr>
+									<tr>
+										<td align="center">
+											<s:decorate id="submit">
+												<div class="actionButtons">
+													<a:commandButton id="save" value="Solicitar Taxi" 
+													immediate="false"
+													action="#{solicitacaoHome.persist}"
+													onclick="javascript:atualizaOrigem()"
+													oncomplete="javascript:limparCampos()"
+													reRender="solicitacaoList,regiaoFormularioRota"/>
+													
+												</div>
+											</s:decorate>
+											<br/>
+											<br/>
+										</td>
+									</tr>
+								</table>
+							</h:form>
+						</s:div>
+						<s:div id="imagemEspera" rendered="#{solicitacaoWebRemote.statusSolicitacao == 'AGUARDANDO_TAXISTA'}">
+							<h:graphicImage value="../img/logo_vermelho_bytaxi.png" style="height: 166px; width: 485px; "/>
+							<br/>
+							<font size="+1"> Solicitação aceita. Em alguns instantes um taxista irá pegar sua solicitação. Você poderá acompanhar no mapa ao lado.</font>
+							<br/>
+							<center>
+							<h:form>
+							     <table cellpadding="0" cellspacing="0" width="250" border="0">
+							     
+			                        <tr>
+			                            <td>
+			                                <s:button image="../img/btnNovoTaxi.png" action="#{solicitacaoHome.reset}" propagation="begin" />
+			                            </td>
+			                            <td>
+			                                <a:commandLink onclick="cancelaSolicitacao();">
+								                <h:outputText value="Cancelar" /> 
+								            </a:commandLink>
+			                            </td>
+			                    </tr>
+							     
+							     </table>
+							    
+							</h:form>
+							</center>
+						</s:div>
+						<s:div id="painelRota" rendered="#{solicitacaoWebRemote.statusSolicitacao == 'AGUARDANDO_TAXISTA'}">
+						</s:div>
+						<s:div id="taxiChegando" rendered="#{solicitacaoWebRemote.statusSolicitacao == 'TAXISTA_CHEGANDO'}">
+							<h:graphicImage value="../img/logo_amarelo_bytaxi.png" style="height: 166px; width: 485px; "/>
+							<br/>
+							<font size="+1"> Um taxista está a caminho neste momento. Acompanhe no mapa!</font>
+							<br/>
+							<center>
+							<h:form>
+								<s:button image="../img/btnNovoTaxi.png"
+									action="#{solicitacaoHome.reset}" propagation="begin"/>
+							</h:form>
+							</center>
+						</s:div>
+						<h:form>
+							<a:jsFunction name="refreshStatus" reRender="regiaoFormularioRota"></a:jsFunction>
+						</h:form>
+						</h:panelGrid>
+					</td>
+					
+					<!-- coluna da direita -->
+					<td align="right" valign="top" width="50%">
+							<div id="solicitacaoMap">
+							</div>
+						<br/>	
+					</td>
+				</tr>
+						
+				<tr>
+					<td colspan="2" >
+						<rich:panel>
+								<f:facet name="header">Últimas solicitações</f:facet>
+								<div class="results" id="divSolicitacaoList">
+									<rich:dataTable id="solicitacaoList" var="_solicitacao"
+										value="#{listaSolicitacoes}">
+										
+										<rich:column width="35%">
+											<f:facet name="header" >Origem</f:facet>
+											<h:outputText value="#{_solicitacao.origem}" />
+										</rich:column>
+										<rich:column width="35%">
+											<f:facet name="header" >Destino</f:facet>
+											<h:outputText value="#{_solicitacao.destino}" />
+										</rich:column>
+										<rich:column width="10%" style="text-align:center;">
+											<f:facet name="header" >Data</f:facet>
+											<h:outputText value="#{_solicitacao.dataHora}" />
+										</rich:column>
+										<rich:column width="5%" style="text-align:center;">
+											<f:facet name="header" >Passageiros</f:facet>
+											<h:outputText value="#{_solicitacao.numeroPassageiros}"/>
+										</rich:column>
+										<rich:column width="15%" style="text-align:center;">
+											<f:facet name="header" >Operações</f:facet>
+											<s:link view="/solicitacaoTaxi/avaliarTaxista.xhtml" id="avaliarTaxista">
+												<h:graphicImage value="../img/bytaxi_ico.png" width="40px" height="40px" />
+												<f:param name="solicitacaoId" value="#{_solicitacao.id}" />
+												<rich:toolTip for="avaliarTaxista" styleClass="tooltip"
+													showDelay="300">
+													<span style="white-space: nowrap"> Avaliar Taxista </span>
+												</rich:toolTip>
+											</s:link>
+											 
+											<s:link id="recuperaSolicitacao">
+												<h:graphicImage value="../img/map_icon.jpg" width="40px" height="40px" />
+												<f:param name="solicitacaoId" value="#{_solicitacao.id}" />
+												<rich:toolTip for="recuperaSolicitacao" styleClass="tooltip"
+													showDelay="300">
+													<span style="white-space: nowrap"> Recuperar Solicitação </span>
+												</rich:toolTip>
+											</s:link>
+										</rich:column>
+									</rich:dataTable>
+								</div>
+							</rich:panel>
+					</td>
+				</tr>
+			</table>
+		</rich:panel>
+		<script type="text/javascript">
+			//<![CDATA[
+			//verifica se na URL tem a informacao qlimpaMsgCancelar()ue a
+			//solicitacao foi cancelada, se foi mostra mensagem 
+			//de cancelamento
+			if(QueryString("c")== "cancelado"){
+			    //jQuery("#divMsgCancela").show();
+				document.getElementById("divMsgCancela").style.display="block";
+			}
+			//function limpa mensagem quando o evento onkeyup
+			//for executado no campo de enereco de origem			
+			function limpaMsgCancelar(){
+			    //jQuery("#divMsgCancela").hide('slow');
+				document.getElementById("divMsgCancela").style.display="none";
+			}
+			// ]]>
+		</script>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,150 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="../layout/template.xhtml">
+
+    <ui:define name="body">
+		<h1><h:outputText value="Avaliação do Taxista" /></h1>
+		<rich:panel>
+            <h:panelGrid columns="4" cellpadding="10px" cellspacing="10px">
+                <h:graphicImage value="/img/1.jpg" alt="#{messages['home.taxi.alt']}" width="150px" height="250px"/>
+				<s:div>            	
+            		<table>
+            			<tr>
+            				<td align="center" colspan="2"><b><font size="+1">Dados do Taxista</font></b></td>
+            			</tr>
+           				<tr>
+	            			<td width="15%">
+	            				Nome:	
+	            			</td>
+	            			<td>
+	            				Marcos Pais xxxx xxxxx
+	            			</td>
+            			</tr>
+            			<tr>
+	            			<td width="15%">
+	            				Telefone:	
+	            			</td>
+	            			<td>
+	            				123411234
+	            			</td>
+            			</tr>
+            			<tr>
+	            			<td width="15%">
+	            				Matrícula:	
+	            			</td>
+	            			<td>
+	            				123411234
+	            			</td>
+            			</tr>
+            			<tr>
+	            			<td width="15%">
+	            				Permissão:	
+	            			</td>
+	            			<td>
+	            				123411234
+	            			</td>
+            			</tr>
+            		</table>
+            	</s:div>
+            	<s:div>
+            		<table>
+            		<tr>
+            			<td colspan="2">
+            			
+            				<b><font size="+2"><h:outputText value="Dados da Corrida"/></font></b>
+            			</td>
+            		</tr>
+            		<tr>
+            			<td>
+            				<h:outputLabel value="Data:"  /> 
+            			</td>
+            			<td>
+            				12/05/2010
+            			</td>
+            		</tr>
+            		<tr>
+            			<td>
+            				<h:outputLabel value="Origem:"  /> 
+            			</td>
+            			<td>
+            				NOnondondond od nodnfo ndood dn
+            			</td>
+            		</tr>
+            		<tr>
+            			<td>
+            				<h:outputLabel value="Destino:"  /> 
+            			</td>
+            			<td>
+            				NOnondondond od nodnfo ndood dn
+            			</td>
+            		</tr>
+            		</table>
+            	</s:div>
+            	<s:div style="align:right;">
+            	<table>
+            		<tr>
+            			<td colspan="2">
+            			
+            				<b><font size="+2"><h:outputText value="Faça sua avaliação abaixo!"/></font></b>
+            			</td>
+            		</tr>
+            		<tr>
+            			<td colspan="2">
+            			
+            				<b><font size="-1"><h:outputText value="1-muiro ruim, 2-ruim, 3-regular, 4-bom, 5-ótimo"/></font></b>
+            			</td>
+            		</tr>
+            		<tr>
+            			<td>
+            				<h:outputLabel value="Tempo de espera:"  /> 
+            			</td>
+            			<td>
+            				<rich:inputNumberSlider value="3" minValue="1" maxValue="5"/>
+								
+            			</td>
+            		</tr>
+            		<tr>
+            			<td>
+            				Atendimento:	
+            			</td>
+            			<td>
+            				<rich:inputNumberSlider value="3" minValue="1" maxValue="5"/>	
+            			</td>
+            		</tr>
+            		<tr>
+            			<td>
+            			Limpeza do Veiculo:	
+            			</td>
+            			<td>
+            				<rich:inputNumberSlider value="3" minValue="1" maxValue="5"/>	
+            			</td>
+            		</tr>
+            		<tr>
+            			<td>
+            			Conduta do Taxista:	
+            			</td>
+            			<td>
+            				<rich:inputNumberSlider value="3" minValue="1" maxValue="5"/>	
+            			</td>
+            		</tr>
+            		<tr>
+            			<td>
+            			Preço Praticado:	
+            			</td>
+            			<td>
+            				<rich:inputNumberSlider value="3" minValue="1" maxValue="5"/>			
+            			</td>
+            		</tr>
+            	</table>
+            	</s:div>
+				
+            </h:panelGrid>
+        </rich:panel>
+    </ui:define>
+ </ui:composition>

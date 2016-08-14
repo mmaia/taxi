@@ -1,0 +1,76 @@
+/* Localized versions of Info.plist keys */
+
+/* 
+ Localizable.strings
+ TaxiPhone
+ 
+ Created by Herivelto Gabriel on 3/19/12.
+ Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+ */
+
+//Títulos Telas
+"TITULO"= "By Taxi";
+
+/* RootView  #######################################################################################################*/
+
+"APLICATIVOS" = "Aplicativos";
+"FERRAMENTAS" = "Ferramentas";
+"CORRIDAS"  = "Corridas";
+"HISTORICO" = "Históricos";
+"AJUDA"     = "Ajuda";
+"LOGIN"     = "Login";
+"ALERTA_USUARIO_NAO_LOGADO" = "É necessário fazer login para entrar nessa opção";
+
+
+/*TELA LOGIN   #########################################################################################################*/
+
+"TITULO_LOGIN" = "Login";
+"TEXTO" = "Entre com seu e-mail e senha para fazer login como Taxista Credenciado";
+"EMAIL" = "Email :";
+"SENHA" = "Senha :";
+"BOTAO_LOGIN" = "Login"; 
+"OK"    = "OK";
+"CANCELA" = "Cancelar";
+
+//Mensagens
+"POPUP_CRIAR_USUARIO" = "Você não tem usuário criado na internet 'Redigite a senha' para criar um usuário";
+"ALERTA"= "Alerta";
+"ALERTA_SENHA_NAO_CONFERE" = "As senha não confere. Tente novamente !";
+"LOGIN_FEITO" = "O Login já foi feito para este usuário";
+"LOGIN_INVALIDO" = "Email inválido, digite um email válido";
+"CAMPOS_OBRIGATORIOS" = "Todos campos são obrigatórios";
+"ERRO" = "ERRO";
+"ERRO_CONECTANDO" = "Erro Conectando, verifique se existe uma conecxão web no celular ou existe problemas com o Servidor";
+"LOGADO_COM_SUCESSO" = "Usuário logado com sucesso ! \nUtilize o sistema.";
+"ERRO_SALVANDO"= "Erro gravando o usuário localmente!";
+"USUARIO_SENHA_INVALIDO" = "Usuário ou senha inválido!";
+"EMAIL_INVALIDO" = "Email inválido";
+"LOGIN_CONECTANDO"= "Aguarde \n Conectando...";
+
+/*TELA  CORRIDAS  #########################################################################################################*/
+
+"TITULO_CORRIDAS" = "Corridas Disponíveis";
+"TITULO_POUP_ACEITAR_CORRIDA" = "Você tem certeza que deseja aceitar a corrida ? \n caso aceite deverá pegar o passageiro o mais rápido possível"; 
+"BOTAO_ACEITAR_CORRIDA" = "Aceitar Corrida";
+"BOTAO_CANCELAR_CORRIDA" = "Cancelar Corrida";
+
+/*TELA  DETALHE CORRIDA ##################################################################################################*/
+
+"TITULO_ORIGEM" = "Origem do Passageiro";
+"TITULO_NOME" = "Nome";
+"TITULO_TELEFONE" = "Telefone";
+"TITULO_PASSAGEIROS" = "Passageiros";
+"TITULO_INFORMACOES" = "Informações";
+"TITULO_MENSAGEM"= "Não finalize até pegar o passageiro.";
+"BOTAO_FINALIZAR" = "Finalizar";
+ 
+
+/*TELA  HISTORICO #########################################################################################################*/
+
+"TITULO_HISTORICO" = "Histórico";
+
+/*TELA  AJUDA     #########################################################################################################*/
+
+"TITULO_AJUDA" = "Ajuda";
+
+

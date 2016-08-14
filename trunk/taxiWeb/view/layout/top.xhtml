@@ -1,0 +1,32 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <f:view xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:a="http://richfaces.org/a4j"
+   xmlns:s="http://jboss.com/products/seam/taglib"
+   contentType="text/html">
+ 
+
+<div align="center">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#5B83A6">
+    <tr>
+      <td width="10">&nbsp;</td>
+      
+      <td width="10" height="140" aling="left">
+      		<a href="/taxiWeb/home.seam">
+				<img src="/taxiWeb/img/bytaxi.png" width="400" height="130" />
+			</a>
+	   </td>
+	   <td width="140" valign="bottom" align="right">
+	  	    <h:outputText id="menuWelcome" value="Olá " rendered="#{identity.loggedIn}"  style="font-family: Verdana; font-size:15px; font-style:bold" />
+	   		<h:outputText id="menuWelcomeId" value="#{usuario.nome}" rendered="#{identity.loggedIn}" style="font-family: Verdana; font-size:15px; font-style:bold; color: White " />
+	   </td>
+	   <td width="10">
+	   		&nbsp;&nbsp;&nbsp;
+       </td>	
+    </tr>
+  </table>
+</div>
+</f:view>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+android:id="@+id/scrollView1"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+	<TableLayout
+	android:id="@+id/tblFinancas"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:shrinkColumns="3"
+	>
+			<TableRow
+			android:id="@+id/tableRowFinancas1"	
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			>
+				<TextView
+				android:id="@+id/textViewFinancas1"
+				android:layout_width="230px"
+				android:layout_height="wrap_content"
+				android:text="Valor Corridas(dia):"
+				android:textSize="16sp"
+				android:layout_span="2">
+				</TextView>
+				<TextView
+				android:id="@+id/txtTotalDoDia"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text=""
+				android:textSize="16sp"
+				android:layout_span="1"
+				android:layout_gravity="right"
+				>
+				</TextView>
+			</TableRow>
+			<TableRow
+			android:id="@+id/tableRowFinancas2"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			>
+				<TextView
+				android:id="@+id/textViewFinancas2"
+				android:layout_width="230px"
+				android:layout_height="wrap_content"
+				android:text="Qnt. Corridas(dia):"
+				android:textSize="16sp"
+				android:layout_span="2"			
+				>
+				</TextView>
+				<TextView
+				android:id="@+id/txtQntCorridaDia"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text=""
+				android:textSize="16sp"
+				android:layout_span="1"			
+				android:layout_gravity="right"
+				>
+				</TextView>
+		</TableRow>
+<View android:layout_height="2dip" android:background="#FF909090" android:id="@+id/linhaFinancas1" />
+			<TableRow
+			android:id="@+id/tableRowFinancas4"
+			android:layout_width="wrap_content"
+			android:orientation="horizontal"
+			>
+				<TextView
+				android:id="@+id/textViewFinancas4"
+				android:layout_width="230px" 	
+				android:layout_height="wrap_content"
+				android:text="Data:"
+				android:textSize="16sp"
+				android:layout_span="2"			
+				>
+				</TextView>
+				<TextView
+				android:id="@+id/txtDataFinancas"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text=""
+				android:textSize="16sp"
+				android:layout_span="1"			
+				>
+				</TextView>
+			</TableRow>	
+<View android:layout_height="2dip" android:background="#FF909090" android:id="@+id/linhaFinancas2" />			
+			<TableRow
+			android:id="@+id/tableRowFinancas5"
+			android:layout_width="wrap_content"
+			android:orientation="horizontal"
+			>
+				<TextView
+				android:id="@+id/txtHoraInicioCorrida"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Hora Início  "
+				android:textSize="16sp" 
+				android:layout_gravity="left">
+				</TextView>
+				<TextView 
+				android:id="@+id/txtHoraFimCorrida"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:text="   Hora Fim  "
+				android:textSize="16sp"
+				android:layout_gravity="center_horizontal"
+				>
+				</TextView>
+				<TextView
+				android:id="@+id/txtValorCorrida"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="  Valor da Corrida"
+				android:textSize="16sp"
+				android:layout_gravity="right"
+				>
+				</TextView>
+		</TableRow>	
+
+	</TableLayout>
+</ScrollView>

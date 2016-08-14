@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+android:id="@+id/widget47"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+
+<LinearLayout
+    android:id="@+id/widget34"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/widget246"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="Nome Cliente:"
+        android:textSize="16sp" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/txtNomeCliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5sp"
+        android:text=""
+        android:textSize="14sp" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/widget246"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="Telefone(s):"
+        android:textSize="16sp" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/txtTelefone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5sp"
+        android:text=""
+        android:textSize="14sp" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/widget246"
+        android:layout_width="200px"
+        android:layout_height="wrap_content"
+        android:text="Qnt de passageiros:"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/txtQntPassageiros"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5sp"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/widget246"
+        android:layout_width="200px"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="Origem:"
+        android:textSize="16sp" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/txtOrigem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5sp"
+        android:text=""
+        android:textSize="14sp" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="200px"
+        android:layout_height="wrap_content"
+        android:text="Complemento:"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/txtComplemento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5sp"
+        android:textSize="14sp" />
+</LinearLayout>
+
+
+</ScrollView>

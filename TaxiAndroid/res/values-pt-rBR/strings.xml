@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<resources>
+    <string name="app_name">Táxi Android</string>
+    <string name="statusLivre">Livre</string>
+    
+    <!-- Alert -->
+	<string name="alertPreencherCampo">"Campo em Branco", Favor preencher</string>
+	<string name="alertPreencherCampoNome">"Campo Nome em Branco", Favor preencher.</string>
+	<string name="alertPreencherCampoUsuario">"Campo Usuário em Branco", Favor preencher.</string>
+	<string name="alertPreencherCampoEmail">"Campo Email em Branco", Favor preencher.</string>
+	<string name="alertPreencherCampoSenha">"Campo Senha em Branco", Favor preencher.</string>
+	<string name="alertSenhaDiferente">"Senhas devem ser iguais", Favor Redigite as senha.</string>
+	<string name="alertEmail">"E-mail inválido", Favor Redigite o E-mail.</string>
+	<string name="alertBotaoOk">OK</string>
+	<string name="alertCadastradoComSucesso">Agora você está cadastrado Táxi Android.</string>
+	<string name="alertCadastradoSemSucesso">Problema com o cadastro, tente mais tarde.</string>
+	<string name="alertTituloErroValidacao">Atenção.</string>
+	<string name="alertTituloErro">Erro</string>
+	<string name="alertTituloAviso">Aviso</string>
+	<string name="alertErroSolicitaTaxi">Erro na solicitação, tente novamente.</string>
+	<string name="alertTitleLogar">Login</string>
+ 
+	 <!-- Erros MSG -->	
+	 <string name="erroJsonTaxiAndroidActivity">Erro tente mais tarde (TAA-001)</string>
+
+	 <!-- Botoes -->   
+	 <string name="btnOk">OK</string>
+	 <string name="btnCancelar">Cancelar</string>
+	 <string name="btnLogin">Login</string>
+	 <string name="btnRecuperarSenha">Recuperar Senha</string>
+	 <string name="btnAjuda">Ajuda</string>
+	 <string name="btnRecuperarSolicitacao">Ver Solicitação</string>
+	     	 	 
+	<!-- Tela Cadastro  -->
+	<string name="telaCadastro">Cadastro Usuário</string>
+
+	<!-- Tela Login  -->
+	<string name="alertLoginComSucesso">Agora você pode solicitar um Táxi, não esqueça de avaliar nossos serviços.</string>
+	<string name="alertLoginSemSucesso">Problema com o Login, tente novamente.</string>
+
+	<string name="telaLogin">Conectar Usuário</string>
+	
+	
+	<!-- Menu -->
+	<string name="menu_item">Teste Menu1</string>
+
+	<!-- Tela Solicita Taxi -->
+	<string name="alertBotaoCancelar">Cancelar</string>
+
+
+	<!-- Mapa -->
+	<string name="mapaLocalizacao">Mapa</string>
+	<string name="id_mapa">"0Wardm-o8dCnZkXvMHfJsJsMiY-S3uivyap_90w"</string>
+	
+	
+	<!-- Spinner -->
+	<string name="tituloSpinnerSolicitaOrigem">Histórico</string>
+	<string name="tituloSpinnerQntPassageiros">Qnt. de Passageiros</string>
+	
+	<string name="again">fala</string>
+	
+	<!-- Dialog status Livre -->
+	<string name="txtStatusLivre">Entrar com o valor da última corrida.</string>
+	
+	<!-- -->
+	<string name="aguarde">Aguarde...</string>
+	<string name="conectando">Conectando...</string>
+</resources>

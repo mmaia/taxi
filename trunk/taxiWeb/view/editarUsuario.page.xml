@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.2.xsd"
+      view-id="/members/*" login-required="true">
+<!-- a linha acima força o usuario está logado -->      
+
+	<!-- navigation from-action="#{identity.senha}">
+		<rule if-outcome="success">
+	         <redirect view-id="/alterarSenha.xhtml"/>
+	     </rule>
+   </navigation-->
+</page>

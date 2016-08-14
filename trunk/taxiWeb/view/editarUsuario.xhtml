@@ -1,0 +1,215 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+<center>
+ <table>
+   <tr><td colspan="2"><h:messages style="color:red;margin:8px;" /></td></tr>  
+   <tr>
+    <td>
+    <h:form id="usuario" styleClass="edit">
+
+        <rich:panel style="width:950px; align:center;">
+            <f:facet name="header"><h:outputText value="#{messages['editar.usuario.titulo']}" /></f:facet>
+       
+						<s:decorate id="nomeField" template="layout/edit.xhtml">
+			                <ui:define name="label">Nome</ui:define>
+			                <h:inputText id="nome"
+			                       required="true"
+			                           size="30"
+			                      maxlength="30"
+			                      value="#{usuario.nome}" requiredMessage="Obrigatório">
+			                    <a:support event="onblur" reRender="nomeField" bypassUpdates="true" ajaxSingle="true"/>
+							</h:inputText>
+			            </s:decorate>
+			            <s:decorate id="sobrenomeField" template="layout/edit.xhtml">
+			                <ui:define name="label">Sobrenome</ui:define>
+			                <h:inputText id="sobrenome"
+			                       required="false"
+			                           size="30"
+			                      maxlength="30"
+			                          value="#{usuario.sobreNome}" >
+			                    <a:support event="onblur" reRender="sobrenomeField" bypassUpdates="true" ajaxSingle="true"/>
+							</h:inputText>
+			            </s:decorate>
+			            <s:decorate id="emailField" template="layout/edit.xhtml">
+			                <ui:define name="label">email(login)</ui:define>
+			                <h:inputText id="email"
+			                       required="true"
+			                       disabled="true"
+			                           size="30"
+			                      maxlength="30"
+			                          value="#{usuario.email}" requiredMessage="Obrigatório" validatorMessage="Login deve ser um email válido">
+			                </h:inputText>
+			            </s:decorate>    
+         			
+			            <s:decorate id="telefone1Field" template="layout/edit.xhtml">
+			                <ui:define name="label">Telefone</ui:define>
+			                <h:inputText id="telefone1"
+			                       required="false"
+			                           size="30"
+			                      maxlength="20"
+			                          value="#{usuario.telefone1}" />
+			            </s:decorate>
+			            <s:decorate id="celularField" template="layout/edit.xhtml">
+			                <ui:define name="label">Celular</ui:define>
+			                <h:inputText id="celular"
+			                           required="false"
+			                           size="30"
+			                      maxlength="20"
+			                          value="#{usuario.celular}" />
+			            </s:decorate>
+			            <s:decorate id="sexoField" template="layout/edit.xhtml">
+			                <ui:define name="label">Sexo</ui:define>
+			                <rich:comboBox value="#{usuario.sexo}" defaultLabel="Selecione">
+			                	<f:selectItem id="masculino" itemValue="Masculino" />
+  								<f:selectItem id="feminino" itemValue="Feminino" />
+			                </rich:comboBox>
+			            </s:decorate>
+			            
+				<br/>
+				
+				<table style="border: 1px solid black; width: 100%;">
+				<tr>
+					<td width="50%">
+			            <s:decorate id="enderecoField" template="layout/edit.xhtml">
+			                <ui:define name="label">Endereço</ui:define>
+			                <h:inputTextarea id="endereco"
+			                               cols="30"
+			                               rows="2"
+			                              value="#{usuario.endereco.logradouro}"/>
+			            </s:decorate>
+			            
+			            <s:decorate id="bairroField" template="layout/edit.xhtml">
+			                <ui:define name="label">Bairro</ui:define>
+			                <h:inputText id="bairro"
+			                               size="30"
+			                               value="#{usuario.endereco.bairro}"/>
+		            	</s:decorate>
+					</td>
+		        	<td>
+			        	<s:decorate id="cidadeField" template="layout/edit.xhtml">
+				                <ui:define name="label">Cidade</ui:define>
+				                <h:inputText id="cidade"
+				                               size="30"
+				                               value="#{usuario.endereco.cidade}"/>
+				        </s:decorate>
+			            <s:decorate id="estadoField" template="layout/edit.xhtml">
+			                <ui:define name="label">Estado</ui:define>
+			                 <rich:comboBox value="#{usuario.endereco.estado}" defaultLabel="Selecione">
+			                	<f:selectItem id="Acre" itemValue="Acre" />
+								<f:selectItem id="Alagoas" itemValue="Alagoas" />
+								<f:selectItem id="Amapá" itemValue="Amapá" />
+								<f:selectItem id="Amazonas" itemValue="Amazonas" />
+								<f:selectItem id="Bahia" itemValue="Bahia" />
+								<f:selectItem id="Ceará" itemValue="Ceará" />
+								<f:selectItem id="DistritoFederal" itemValue="Distrito Federal" />
+								<f:selectItem id="EspíritoSanto" itemValue="Espírito Santo" />
+								<f:selectItem id="Goiás" itemValue="Goiás" />
+								<f:selectItem id="Maranhão" itemValue="Maranhão" />
+								<f:selectItem id="MatoGrosso" itemValue="Mato Grosso" />
+								<f:selectItem id="MatoGrossodoSul" itemValue="Mato Grosso do Sul" />
+								<f:selectItem id="MinasGerais" itemValue="Minas Gerais" />
+								<f:selectItem id="Pará" itemValue="Pará" />
+								<f:selectItem id="Paraíba" itemValue="Paraíba" />
+								<f:selectItem id="Paraná" itemValue="Paraná" />
+								<f:selectItem id="Pernambuco" itemValue="Pernanbuco" />
+								<f:selectItem id="Piauí" itemValue="Piauí" />
+								<f:selectItem id="RiodeJaneiro" itemValue="Rio de Janeiro" />
+								<f:selectItem id="RioGrandedoNorte" itemValue="Rio Grande do Norte" />
+								<f:selectItem id="RioGrandedoSul" itemValue="Rio Grande do Sul" />
+								<f:selectItem id="Rondônia" itemValue="Rondônia" />
+								<f:selectItem id="Roraima" itemValue="Roraima" />
+								<f:selectItem id="SantaCatarina" itemValue="Santa Catarina" />
+								<f:selectItem id="SãoPaulo" itemValue="São Paulo" />
+								<f:selectItem id="Sergipe" itemValue="Sergipe" />
+								<f:selectItem id="Tocantins" itemValue="Tocantins" />
+			                </rich:comboBox>
+			            </s:decorate>
+			            
+			        	<s:decorate id="CEPField" template="layout/edit.xhtml">
+			                <ui:define name="label">C.E.P</ui:define>
+			                <h:inputText id="CEP"
+			                               size="30"
+			                               value="#{usuario.endereco.cep}"/>
+		            	</s:decorate>    
+					</td>
+				</tr>    
+			</table>
+			<br/>
+			
+						
+			 <!-- Painel de Cadastro de taxista -->
+           	
+				<s:decorate id="ehTaxista" rendered="#{usuario.ehTaxista}" >
+					<h:selectBooleanCheckbox id="ehTaxista" required="false" value="#{usuario.ehTaxista}" disabled="true">
+					</h:selectBooleanCheckbox> 
+					Sou taxista e quero cadastrar meu taxi para aprovação!
+				</s:decorate>
+				
+	                 
+                <s:decorate id="cnhField" template="layout/edit.xhtml"  required="#{usuario.ehTaxista}" rendered="#{usuario.ehTaxista}">
+	                <ui:define name="label">Carteira de Motorista</ui:define>
+	                <h:inputText id="cnh"
+	                               size="30"
+	                               value="#{usuario.taxista.cnh}"
+	                               disabled="true"/>
+				</s:decorate>
+				
+				<s:decorate id="cpField" template="layout/edit.xhtml"  rendered="#{usuario.ehTaxista}">
+	                <ui:define name="label">C.P.F</ui:define>
+	                <h:inputText id="cpf"
+	                               size="30"
+	                               value="#{usuario.taxista.cpf}"
+	                               disabled="true"/>
+				</s:decorate>
+				
+				<s:decorate id="matriculaField" template="layout/edit.xhtml"  rendered="#{usuario.ehTaxista}">
+	                <ui:define name="label">Matrícula</ui:define>
+	                <h:inputText id="matricula"
+	                               size="30"
+	                               value="#{usuario.taxista.matricla}"
+	                               disabled="true"/>
+				</s:decorate>
+				
+				<s:decorate id="permissaoField" template="layout/edit.xhtml"  rendered="#{usuario.ehTaxista}">
+	                <ui:define name="label">Permissão</ui:define>
+	                <h:inputText id="permissao"
+	                               size="30"
+	                               value="#{usuario.taxista.permissao}"
+	                               disabled="true"/>
+				</s:decorate>
+			
+			
+			<br/>			
+			<div style="clear:both">
+                <span class="required">*</span>
+                campos obrigatórios
+	        </div>
+	
+			<br/>
+			
+			<div class="actionButtons">
+				<h:commandButton id="update"
+					value="Alterar Usuário" action="#{registroBean.atualizarUsuario}" />
+			</div>
+			
+        </rich:panel>
+
+      </h:form>
+    </td> 
+   </tr>
+  </table>
+ </center>
+</ui:define>
+
+</ui:composition>

@@ -1,0 +1,60 @@
+<rich:toolBar
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:rich="http://richfaces.org/rich">
+    <rich:toolBarGroup>    	
+         <h:outputText id="menuLinha1" value="|" rendered="#{identity.loggedIn}" style="color: #FEB841; font-family: Verdana; font-size:15px; font-style:bold" />
+         <s:link id="menuHomeId" view="/home.xhtml" propagation="none" rendered="#{identity.loggedIn}" value="Home" style="font-family: Verdana; font-size:12px;" >
+        </s:link>
+		 <h:outputText id="menuLinha2" value="|" rendered="#{identity.loggedIn}" style="color: #FEB841; font-family: Verdana; font-size:15px; font-style:bold" />       
+        <s:link id="menuSolicitarTaxiId" view="/solicitacaoTaxi/solicitarTaxi.xhtml" propagation="none" rendered="#{identity.loggedIn}" value="Solicitar Taxi" style="font-family: Verdana; font-size:12px;"> 
+        </s:link> 
+        <h:outputText id="menuLinha3" value="|" rendered="#{identity.loggedIn}" style="color: #FEB841; font-family: Verdana; font-size:15px; font-style:bold" />       
+    </rich:toolBarGroup>
+    
+    <!-- @newMenuItem@ -->
+    <rich:toolBarGroup location="right">
+       
+       <s:link id="menuHomeIdLink" view="/home.xhtml" propagation="none">
+	        <h:graphicImage value="/img/home-icon.png" width="30px" height="30px"/>
+	        	<rich:toolTip for="menuHomeIdLink" styleClass="tooltip" showDelay="300">
+	        		<span style="white-space: nowrap">Página Inicial</span>
+				</rich:toolTip>
+		</s:link>
+		
+        <s:link id="menuBrasilId" propagation="none">
+	        <h:graphicImage value="/img/flag_brasil.png" width="30px" height="30px"/>
+	        	<rich:toolTip for="menuBrasilId" styleClass="tooltip" showDelay="300">
+	        		<span style="white-space: nowrap">Lingua do sistema: Português</span>
+				</rich:toolTip>
+		</s:link>
+		<s:link id="menuUSAId" propagation="none">
+	        <h:graphicImage value="/img/flag_usa.png" width="30px" height="30px"/>
+	        	<rich:toolTip for="menuUSAId" styleClass="tooltip" showDelay="300">
+	        		<span style="white-space: nowrap">Software Language: English</span>
+				</rich:toolTip>
+		</s:link>
+        
+        <s:link id="menuLoginId" view="/login.xhtml" rendered="#{not identity.loggedIn}" propagation="none">
+	        <h:graphicImage value="/img/login-icon.png" width="30px" height="30px"/>
+	        	<rich:toolTip for="menuLoginId" styleClass="tooltip" showDelay="300">
+	        		<span style="white-space: nowrap"> Login (Entrar) </span>
+				</rich:toolTip>
+		</s:link>
+		<s:link id="editarUsuarioId" view="/editarUsuario.xhtml" rendered="#{identity.loggedIn}" propagation="none" >
+        	<h:graphicImage value="/img/user-icon.png" width="30px" height="30px"/>
+        	<rich:toolTip for="editarUsuarioId" styleClass="tooltip" showDelay="300">
+        		<span style="white-space: nowrap"> Editar Perfil </span>
+			</rich:toolTip>
+        </s:link>
+        <s:link id="menuLogoutId" view="/home.xhtml" action="#{identity.logout}" rendered="#{identity.loggedIn}" propagation="none" >
+        	<h:graphicImage value="/img/logout-icon.png" width="30px" height="30px"/>
+        	<rich:toolTip for="menuLogoutId" styleClass="tooltip" showDelay="300">
+        		<span style="white-space: nowrap"> Logout (Sair) </span>
+			</rich:toolTip>
+        </s:link>
+    </rich:toolBarGroup>
+</rich:toolBar>
